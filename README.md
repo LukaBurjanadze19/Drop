@@ -1,33 +1,51 @@
 # Drop
 
-A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
+Drop is a small [libGDX](https://libgdx.com/) desktop game. Move the bucket left and right to catch the falling droplets while the background music loops and the drop sound plays on each catch.
 
-This project was generated with a template including simple application launchers and an empty `ApplicationListener` implementation.
+## Gameplay
 
-## Platforms
+- Catch falling droplets with the bucket.
+- Use the left and right arrow keys to move.
+- The game uses a fixed world size and a `FitViewport` so the play area stays consistent across window sizes.
 
-- `core`: Main module with the application logic shared by all platforms.
-- `lwjgl3`: Primary desktop platform using LWJGL3; was called 'desktop' in older docs.
+## Requirements
 
-## Gradle
+- A Java Development Kit installed locally.
+- Gradle Wrapper support through `gradlew` or `gradlew.bat`.
+- A current JDK is recommended for development and packaging; the project targets Java 8 bytecode for the game modules.
 
-This project uses [Gradle](https://gradle.org/) to manage dependencies.
-The Gradle wrapper was included, so you can run Gradle tasks using `gradlew.bat` or `./gradlew` commands.
-Useful Gradle tasks and flags:
+## Run
 
-- `--continue`: when using this flag, errors will not stop the tasks from running.
-- `--daemon`: thanks to this flag, Gradle daemon will be used to run chosen tasks.
-- `--offline`: when using this flag, cached dependency archives will be used.
-- `--refresh-dependencies`: this flag forces validation of all dependencies. Useful for snapshot versions.
-- `build`: builds sources and archives of every project.
-- `cleanEclipse`: removes Eclipse project data.
-- `cleanIdea`: removes IntelliJ project data.
-- `clean`: removes `build` folders, which store compiled classes and built archives.
-- `eclipse`: generates Eclipse project data.
-- `idea`: generates IntelliJ project data.
-- `lwjgl3:jar`: builds application's runnable jar, which can be found at `lwjgl3/build/libs`.
-- `lwjgl3:run`: starts the application.
-- `test`: runs unit tests (if any).
+Run the desktop version from the project root:
 
-Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
-For example, `core:clean` removes `build` folder only from the `core` project.
+```bash
+./gradlew lwjgl3:run
+```
+
+On Windows:
+
+```bat
+gradlew.bat lwjgl3:run
+```
+
+## Build
+
+Common Gradle tasks:
+
+- `./gradlew build` - compile and test all modules.
+- `./gradlew clean` - remove build outputs.
+- `./gradlew lwjgl3:jar` - create a runnable desktop JAR.
+- `./gradlew lwjgl3:jarWin` - create a Windows-only JAR.
+- `./gradlew lwjgl3:jarLinux` - create a Linux-only JAR.
+- `./gradlew lwjgl3:jarMac` - create a macOS-only JAR.
+
+## Controls
+
+- `Left Arrow` - Move bucket left.
+- `Right Arrow` - Move bucket right.
+
+## Notes
+
+- The desktop launcher lives in `lwjgl3/src/main/java/com/badlogic/drop/lwjgl3/Lwjgl3Launcher.java`.
+- The main game logic lives in `core/src/main/java/com/badlogic/drop/Main.java`.
+- Assets are loaded from the `assets` directory during desktop runs.
