@@ -21,6 +21,9 @@ public class Main implements ApplicationListener {
     private SpriteBatch spriteBatch;
     private FitViewport viewport;
 
+    private int worldWidth = 8;
+    private int worldHeight = 6;
+
     @Override
     public void create() {
         backgroundTexture = new Texture("background.png");
@@ -31,7 +34,7 @@ public class Main implements ApplicationListener {
         music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
 
         spriteBatch = new SpriteBatch();
-        viewport = new FitViewport(8,  6);
+        viewport = new FitViewport(worldWidth,  worldHeight);
     }
 
     @Override
@@ -63,6 +66,7 @@ public class Main implements ApplicationListener {
         spriteBatch.begin();
 
         spriteBatch.draw(bucketTexture, 0, 0, 1, 1);
+        spriteBatch.draw(backgroundTexture, 0, 0, worldWidth, worldHeight);
 
         spriteBatch.end();
     }
