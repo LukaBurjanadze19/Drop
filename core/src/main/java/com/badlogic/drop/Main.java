@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -15,11 +16,14 @@ public class Main implements ApplicationListener {
     private Texture backgroundTexture;
     private Texture bucketTexture;
     private Texture dropTexture;
+
     private Sound dropSound;
     private Music music;
 
     private SpriteBatch spriteBatch;
     private FitViewport viewport;
+
+    private Sprite bucketSprite;
 
     private int worldWidth = 8;
     private int worldHeight = 6;
@@ -35,6 +39,9 @@ public class Main implements ApplicationListener {
 
         spriteBatch = new SpriteBatch();
         viewport = new FitViewport(worldWidth,  worldHeight);
+
+        bucketSprite = new Sprite(bucketTexture);
+        bucketSprite.setSize(1, 1);
     }
 
     @Override
@@ -65,8 +72,8 @@ public class Main implements ApplicationListener {
         spriteBatch.setProjectionMatrix(viewport.getCamera().combined);
         spriteBatch.begin();
 
-        spriteBatch.draw(bucketTexture, 0, 0, 1, 1);
         spriteBatch.draw(backgroundTexture, 0, 0, worldWidth, worldHeight);
+        bucketSprite.draw(spriteBatch);
 
         spriteBatch.end();
     }
