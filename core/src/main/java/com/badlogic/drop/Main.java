@@ -41,6 +41,11 @@ public class Main implements ApplicationListener {
 
     @Override
     public void create() {
+        music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+        music.setLooping(true);
+        music.setVolume(.5f);
+        music.play();
+
         backgroundTexture = new Texture("background.png");
         bucketTexture = new Texture("bucket.png");
         dropTexture = new Texture("drop.png");
@@ -107,6 +112,7 @@ public class Main implements ApplicationListener {
             if(dropSprite.getY() < -dropHeight) dropSprites.removeIndex(i);
             else if(bucketRectangle.overlaps(dropletRectangle)){
                 dropSprites.removeIndex(i);
+                dropSound.play();
             }
         }
 
