@@ -33,6 +33,8 @@ public class Main implements ApplicationListener {
 
     Array<Sprite> dropSprites;
 
+    private float dropTimer;
+
     @Override
     public void create() {
         backgroundTexture = new Texture("background.png");
@@ -49,7 +51,6 @@ public class Main implements ApplicationListener {
         bucketSprite.setSize(1, 1);
 
         dropSprites = new Array<>();
-        createDroplet();
     }
 
     @Override
@@ -88,6 +89,12 @@ public class Main implements ApplicationListener {
         for(Sprite dropSprite : dropSprites){
             dropSprite.translateY(-2f * delta);
         }
+
+        dropTimer += delta;
+        if(dropTimer > 1f){
+            dropTimer = 0f;
+            createDroplet();
+        }
     }
 
     private void draw(){
@@ -112,7 +119,7 @@ public class Main implements ApplicationListener {
 
         Sprite dropSprite = new Sprite(dropTexture);
         dropSprite.setSize(dropWidth, dropHeight);
-        dropSprite.setX(0);
+        dropSprite.setX(MathUtils.random(0f, worldWidth - dropWidth));
         dropSprite.setY(worldHeight);
         dropSprites.add(dropSprite);
     }
