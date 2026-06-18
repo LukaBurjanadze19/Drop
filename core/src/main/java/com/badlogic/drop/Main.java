@@ -2,6 +2,7 @@ package com.badlogic.drop;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -59,7 +60,14 @@ public class Main implements ApplicationListener {
     }
 
     private void input(){
+        float speed = 2f;
+        float delta = Gdx.graphics.getDeltaTime();
 
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            bucketSprite.translateX(speed * delta);
+        }else if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+            bucketSprite.translateX(-speed * delta);
+        }
     }
 
     private void logic(){
