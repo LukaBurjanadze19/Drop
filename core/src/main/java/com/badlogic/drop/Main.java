@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
@@ -30,6 +31,8 @@ public class Main implements ApplicationListener {
     private int worldWidth = 8;
     private int worldHeight = 6;
 
+    Array<Sprite> dropSprites;
+
     @Override
     public void create() {
         backgroundTexture = new Texture("background.png");
@@ -44,6 +47,9 @@ public class Main implements ApplicationListener {
 
         bucketSprite = new Sprite(bucketTexture);
         bucketSprite.setSize(1, 1);
+
+        dropSprites = new Array<>();
+        createDroplet();
     }
 
     @Override
@@ -87,7 +93,22 @@ public class Main implements ApplicationListener {
         spriteBatch.draw(backgroundTexture, 0, 0, worldWidth, worldHeight);
         bucketSprite.draw(spriteBatch);
 
+        for(Sprite dropSprite : dropSprites){
+            dropSprite.draw(spriteBatch);
+        }
+
         spriteBatch.end();
+    }
+
+    private void createDroplet(){
+        float dropWidth = 1;
+        float dropHeight = 1;
+
+        Sprite dropSprite = new Sprite(dropTexture);
+        dropSprite.setSize(dropWidth, dropHeight);
+        dropSprite.setX(0);
+        dropSprite.setY(worldHeight);
+        dropSprites.add(dropSprite);
     }
 
     @Override
