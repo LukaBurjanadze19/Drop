@@ -82,6 +82,12 @@ public class Main implements ApplicationListener {
         float bucketHeight = bucketSprite.getHeight();
 
         bucketSprite.setX(MathUtils.clamp(bucketSprite.getX(), 0, worldWidth - bucketWidth));
+
+        float delta = Gdx.graphics.getDeltaTime();
+
+        for(Sprite dropSprite : dropSprites){
+            dropSprite.translateY(-2f * delta);
+        }
     }
 
     private void draw(){
